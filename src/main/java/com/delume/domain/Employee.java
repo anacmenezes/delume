@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import com.delume.domain.enums.Position;
+
 @Entity
 public class Employee implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -24,13 +26,13 @@ public class Employee implements Serializable {
 	public Employee() {
 	}
 
-	public Employee(Integer id, Integer cpf, String name, String password, Integer position) {
+	public Employee(Integer id, Integer cpf, String name, String password, Position position) {
 		super();
 		this.id = id;
 		this.cpf = cpf;
 		this.name = name;
 		this.password = password;
-		this.position = position;
+		this.position = (position==null) ? null : position.getCod();
 	}
 
 	public Integer getId() {

@@ -3,24 +3,27 @@ package com.delume.domain;
 import java.io.Serializable;
 import java.util.Objects;
 
+import com.delume.domain.enums.Room;
+
 public class Appointment implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Integer id;
 	private Integer date;
 	private String informations;
+	private Integer room;
 //	Patient
 //	Employee
-//	Room
 
 	public Appointment() {
 	}
 
-	public Appointment(Integer id, Integer date, String informations) {
+	public Appointment(Integer id, Integer date, String informations, Room room) {
 		super();
 		this.id = id;
 		this.date = date;
 		this.informations = informations;
+		this.room = (room==null) ? null : room.getCod();
 	}
 
 	public Integer getId() {
@@ -47,9 +50,17 @@ public class Appointment implements Serializable {
 		this.informations = informations;
 	}
 
+	public Integer getRoom() {
+		return room;
+	}
+
+	public void setRoom(Integer room) {
+		this.room = room;
+	}
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(date, id, informations);
+		return Objects.hash(date, id, informations, room);
 	}
 
 	@Override
@@ -62,6 +73,6 @@ public class Appointment implements Serializable {
 			return false;
 		Appointment other = (Appointment) obj;
 		return Objects.equals(date, other.date) && Objects.equals(id, other.id)
-				&& Objects.equals(informations, other.informations);
+				&& Objects.equals(informations, other.informations) && Objects.equals(room, other.room);
 	}
 }

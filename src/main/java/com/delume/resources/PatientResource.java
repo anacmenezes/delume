@@ -9,7 +9,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 @RestController
 @RequestMapping(value = "/employees", produces = {"application/json"})
 @Tag(name = "employees")
-public class EmployeeResource {
+public class PatientResource {
 	
 	@RequestMapping(method=RequestMethod.GET)
 	public String listar() {
