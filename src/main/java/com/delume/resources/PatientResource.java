@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.RestController;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
-@RequestMapping(value = "/employees", produces = {"application/json"})
-@Tag(name = "employees")
+@RequestMapping(value = "/patient", produces = {"application/json"})
+@Tag(name = "patient")
 public class PatientResource {
 	
 	@RequestMapping(method=RequestMethod.GET)
