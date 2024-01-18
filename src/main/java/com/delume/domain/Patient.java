@@ -1,16 +1,12 @@
 package com.delume.domain;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 
 @Entity
 public class Patient implements Serializable {
@@ -23,20 +19,19 @@ public class Patient implements Serializable {
 	private String name;
 	private String email;
 	private String phone;
-	
-	@OneToMany(mappedBy="patient", cascade=CascadeType.ALL)
-	private List<Address> address = new ArrayList<>();
+	private Address address;
 	
 	public Patient() {
 	}
 
-	public Patient(Integer id, Integer cpf, String name, String email, String phone) {
+	public Patient(Integer id, Integer cpf, String name, String email, String phone, Address address) {
 		super();
 		this.id = id;
 		this.cpf = cpf;
 		this.name = name;
 		this.phone = phone;
 		this.email = email;
+		this.address = address;
 	}
 
 	public Integer getId() {
@@ -78,12 +73,12 @@ public class Patient implements Serializable {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
-	public List<Address> getAddress() {
+	
+	public Address getAddress() {
 		return address;
 	}
 
-	public void setAddress(List<Address> address) {
+	public void setAddress(Address address) {
 		this.address = address;
 	}
 

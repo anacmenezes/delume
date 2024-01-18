@@ -7,10 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Address implements Serializable {
@@ -26,16 +22,11 @@ public class Address implements Serializable {
 	private String city;
 	private String cep;
 	
-	@JsonIgnore
-	@ManyToOne
-	@JoinColumn(name="cliente_id")
-	private Patient patient;
-	
 	public Address() {
 	}
 
 	public Address(Integer id, String street, String number, String neighborhood, String state, String city,
-			String cep, Patient patient) {
+			String cep) {
 		super();
 		this.id = id;
 		this.street = street;
@@ -44,7 +35,6 @@ public class Address implements Serializable {
 		this.state = state;
 		this.city = city;
 		this.cep = cep;
-		this.patient = patient;
 	}
 
 	public Integer getId() {
@@ -101,14 +91,6 @@ public class Address implements Serializable {
 
 	public void setCep(String cep) {
 		this.cep = cep;
-	}
-
-	public Patient getPatient() {
-		return patient;
-	}
-
-	public void setPatient(Patient patient) {
-		this.patient = patient;
 	}
 
 	@Override

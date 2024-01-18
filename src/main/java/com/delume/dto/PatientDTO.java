@@ -2,6 +2,7 @@ package com.delume.dto;
 
 import java.io.Serializable;
 
+import com.delume.domain.Address;
 import com.delume.domain.Patient;
 
 public class PatientDTO implements Serializable {
@@ -12,6 +13,7 @@ public class PatientDTO implements Serializable {
 	private String name;
 	private String email;
 	private String phone;
+	private Address address;
 	
 	public PatientDTO() {
 	}
@@ -21,6 +23,7 @@ public class PatientDTO implements Serializable {
 		name = obj.getName();
 		email = obj.getEmail();
 		phone = obj.getPhone();
+		address = obj.getAddress();	
 	}
 
 	public Integer getId() {
@@ -61,5 +64,13 @@ public class PatientDTO implements Serializable {
 
 	public void setPhone(String phone) {
 		this.phone = phone;
+	}
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
 	}
 }

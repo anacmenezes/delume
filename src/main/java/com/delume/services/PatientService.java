@@ -50,7 +50,7 @@ public class PatientService {
 	}	
 	
 	public Patient fromDTO(PatientDTO objDto) {
-		return new Patient(objDto.getId(), objDto.getCpf(), objDto.getName(), objDto.getEmail(), objDto.getPhone());
+		return new Patient(objDto.getId(), objDto.getCpf(), objDto.getName(), objDto.getEmail(), objDto.getPhone(), objDto.getAddress());
 	}
 
 	private void updateData(Patient newObj, Patient obj) {
