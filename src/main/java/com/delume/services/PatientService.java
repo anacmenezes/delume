@@ -1,6 +1,7 @@
 package com.delume.services;
 
 import java.util.List;
+import java.util.Locale.Category;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,8 @@ import org.springframework.stereotype.Service;
 import com.delume.domain.Patient;
 import com.delume.dto.PatientDTO;
 import com.delume.repositories.PatientRepository;
+import com.delume.services.exception.DataIntegrityException;
+import com.delume.services.exception.ObjectNotFoundException;
 
 @Service
 public class PatientService {
@@ -19,7 +22,7 @@ public class PatientService {
 
 	public Patient find(Integer id) {
 		Optional<Patient> obj = repo.findById(id);
-		return obj.orElse(null);
+		return obj.orElseThrow(()-> new ObjectNotFoundException("Object not found! Id: " + id + ", Type: " + Category.class.getName()));
 	}
 
 	public Patient insert(Patient obj) {
@@ -38,7 +41,7 @@ public class PatientService {
 		try {
 			repo.deleteById(id);
 		} catch (DataIntegrityViolationException e) {
-			throw (null);
+			throw new DataIntegrityException("Cannot delete a category that has linker profiles.");
 		}
 	}
 	
