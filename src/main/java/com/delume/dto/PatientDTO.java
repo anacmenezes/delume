@@ -2,23 +2,25 @@ package com.delume.dto;
 
 import java.io.Serializable;
 
+import com.delume.domain.Patient;
+
 public class PatientDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private Integer id;
 	private Integer cpf;
 	private String name;
+	private String email;
 	private String phone;
 	
 	public PatientDTO() {
 	}
 
-	public PatientDTO(Integer id, Integer cpf, String name, String phone) {
-		super();
-		this.id = id;
-		this.cpf = cpf;
-		this.name = name;
-		this.phone = phone;
+	public PatientDTO(Patient obj) {
+		id = obj.getId();
+		name = obj.getName();
+		email = obj.getEmail();
+		phone = obj.getPhone();
 	}
 
 	public Integer getId() {
@@ -43,6 +45,14 @@ public class PatientDTO implements Serializable {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getPhone() {
