@@ -4,8 +4,6 @@ import java.io.Serializable;
 import java.util.Objects;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
@@ -13,36 +11,32 @@ public class Address implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY) 
-	private Integer id;
+	private String cep;
 	private String street;
 	private String number;
 	private String neighborhood;
-	private String state;
 	private String city;
-	private String cep;
+	private String state;
 	
 	public Address() {
 	}
 
-	public Address(Integer id, String street, String number, String neighborhood, String state, String city,
-			String cep) {
+	public Address(String cep, String street, String number, String neighborhood, String city, String state) {
 		super();
-		this.id = id;
+		this.cep = cep;
 		this.street = street;
 		this.number = number;
 		this.neighborhood = neighborhood;
-		this.state = state;
 		this.city = city;
+		this.state = state;
+	}
+
+	public String getCep() {
+		return cep;
+	}
+
+	public void setCep(String cep) {
 		this.cep = cep;
-	}
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
 	}
 
 	public String getStreet() {
@@ -69,14 +63,6 @@ public class Address implements Serializable {
 		this.neighborhood = neighborhood;
 	}
 
-	public String getState() {
-		return state;
-	}
-
-	public void setState(String state) {
-		this.state = state;
-	}
-
 	public String getCity() {
 		return city;
 	}
@@ -85,17 +71,17 @@ public class Address implements Serializable {
 		this.city = city;
 	}
 
-	public String getCep() {
-		return cep;
+	public String getState() {
+		return state;
 	}
 
-	public void setCep(String cep) {
-		this.cep = cep;
+	public void setState(String state) {
+		this.state = state;
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(cep, city, id, neighborhood, number, state, street);
+		return Objects.hash(cep, city, neighborhood, number, state, street);
 	}
 
 	@Override
@@ -107,7 +93,7 @@ public class Address implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Address other = (Address) obj;
-		return Objects.equals(cep, other.cep) && Objects.equals(city, other.city) && Objects.equals(id, other.id)
+		return Objects.equals(cep, other.cep) && Objects.equals(city, other.city)
 				&& Objects.equals(neighborhood, other.neighborhood) && Objects.equals(number, other.number)
 				&& Objects.equals(state, other.state) && Objects.equals(street, other.street);
 	}

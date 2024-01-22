@@ -30,9 +30,9 @@ public class PatientResource {
 	@Autowired
 	private PatientService service;
 	
-	@RequestMapping(value="/{id}", method=RequestMethod.GET)
-	public ResponseEntity<Patient> find(@PathVariable Integer id) {
-		Patient obj = service.find(id);
+	@RequestMapping(value="/{cpf}", method=RequestMethod.GET)
+	public ResponseEntity<Patient> find(@PathVariable Long cpf) {
+		Patient obj = service.find(cpf);
 		return ResponseEntity.ok().body(obj);
 	}
 	
@@ -41,21 +41,21 @@ public class PatientResource {
 		Patient obj = service.fromDTO(objDto);
 		obj = service.insert(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
-				.path("/{id}").buildAndExpand(obj.getId()).toUri();
+				.path("/{cpf}").buildAndExpand(obj.getCpf()).toUri();
 			return ResponseEntity.created(uri).build();
 	}
 
-	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
-	public ResponseEntity<Void> update(@Valid @RequestBody PatientDTO objDto, @PathVariable Integer id) {
+	@RequestMapping(value="/{cpf}", method=RequestMethod.PUT)
+	public ResponseEntity<Void> update(@Valid @RequestBody PatientDTO objDto, @PathVariable Long cpf) {
 		Patient obj = service.fromDTO(objDto);
-		obj.setId(id);
+		obj.setCpf(cpf);
 		obj = service.update(obj);
 		return ResponseEntity.noContent().build();
 	}
 	
-	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)
-	public ResponseEntity<Void> delete(@PathVariable Integer id) {
-		service.delete(id);
+	@RequestMapping(value="/{cpf}", method=RequestMethod.DELETE)
+	public ResponseEntity<Void> delete(@PathVariable Long cpf) {
+		service.delete(cpf);
 		return ResponseEntity.noContent().build();
 		
 	}

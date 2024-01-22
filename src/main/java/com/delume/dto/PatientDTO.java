@@ -8,8 +8,7 @@ import com.delume.domain.Patient;
 public class PatientDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	private Integer id;
-	private Integer cpf;
+	private Long cpf;
 	private String name;
 	private String email;
 	private String phone;
@@ -19,26 +18,17 @@ public class PatientDTO implements Serializable {
 	}
 
 	public PatientDTO(Patient obj) {
-		id = obj.getId();
 		name = obj.getName();
 		email = obj.getEmail();
 		phone = obj.getPhone();
 		address = obj.getAddress();	
 	}
 
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public Integer getCpf() {
+	public Long getCpf() {
 		return cpf;
 	}
 
-	public void setCpf(Integer cpf) {
+	public void setCpf(Long cpf) {
 		this.cpf = cpf;
 	}
 

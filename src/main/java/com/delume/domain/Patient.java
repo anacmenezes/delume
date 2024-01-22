@@ -4,8 +4,6 @@ import java.io.Serializable;
 import java.util.Objects;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
@@ -13,9 +11,7 @@ public class Patient implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY) 
-	private Integer id;
-	private Integer cpf;
+	private Long cpf;
 	private String name;
 	private String email;
 	private String phone;
@@ -24,9 +20,8 @@ public class Patient implements Serializable {
 	public Patient() {
 	}
 
-	public Patient(Integer id, Integer cpf, String name, String email, String phone, Address address) {
+	public Patient(Long cpf, String name, String email, String phone, Address address) {
 		super();
-		this.id = id;
 		this.cpf = cpf;
 		this.name = name;
 		this.phone = phone;
@@ -34,19 +29,11 @@ public class Patient implements Serializable {
 		this.address = address;
 	}
 
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public Integer getCpf() {
+	public Long getCpf() {
 		return cpf;
 	}
 
-	public void setCpf(Integer cpf) {
+	public void setCpf(Long cpf) {
 		this.cpf = cpf;
 	}
 
@@ -84,7 +71,7 @@ public class Patient implements Serializable {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(cpf, email, id, name, phone);
+		return Objects.hash(address, cpf, email, name, phone);
 	}
 
 	@Override
@@ -96,7 +83,8 @@ public class Patient implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Patient other = (Patient) obj;
-		return Objects.equals(cpf, other.cpf) && Objects.equals(email, other.email) && Objects.equals(id, other.id)
-				&& Objects.equals(name, other.name) && Objects.equals(phone, other.phone);
+		return Objects.equals(address, other.address) && Objects.equals(cpf, other.cpf)
+				&& Objects.equals(email, other.email) && Objects.equals(name, other.name)
+				&& Objects.equals(phone, other.phone);
 	}
 }

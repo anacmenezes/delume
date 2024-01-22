@@ -29,9 +29,8 @@ public class DelumeApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
-		Address add1 = new Address(null, "Street test1", "123", "Neighborhood test1", "RJ", "RJ",
-				"123456");
-		Patient pat1 = new Patient(null, 912, "Test1", "test1@gmail.com", "2589463", add1);
+		Address add1 = new Address("123456", "Street test1", "123", "Neighborhood test1", "RJ", "RJ");
+		Patient pat1 = new Patient((long) 56278946102.0, "Test1", "test1@gmail.com", "2589463", add1);
 		
 		patientRepository.saveAll(Arrays.asList(pat1));
 	}

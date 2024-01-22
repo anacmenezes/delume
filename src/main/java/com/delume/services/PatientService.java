@@ -20,26 +20,26 @@ public class PatientService {
 	@Autowired
 	private PatientRepository repo;
 
-	public Patient find(Integer id) {
-		Optional<Patient> obj = repo.findById(id);
-		return obj.orElseThrow(()-> new ObjectNotFoundException("Object not found! Id: " + id + ", Type: " + Category.class.getName()));
+	public Patient find(Long cpf) {
+		Optional<Patient> obj = repo.findById(cpf);
+		return obj.orElseThrow(()-> new ObjectNotFoundException("Object not found! Id: " + cpf + ", Type: " + Category.class.getName()));
 	}
 
 	public Patient insert(Patient obj) {
-		obj.setId(null);
+		obj.setCpf(null);
 		return repo.save(obj);
 	}
 
 	public Patient update(Patient obj) {
-		Patient newObj = find(obj.getId());
+		Patient newObj = find(obj.getCpf());
 		updateData(newObj, obj);
 		return repo.save(newObj);
 	}
 
-	public void delete(Integer id) {
-		find(id);
+	public void delete(Long cpf) {
+		find(cpf);
 		try {
-			repo.deleteById(id);
+			repo.deleteById(cpf);
 		} catch (DataIntegrityViolationException e) {
 			throw new DataIntegrityException("Cannot delete a category that has linker profiles.");
 		}
@@ -50,7 +50,7 @@ public class PatientService {
 	}	
 	
 	public Patient fromDTO(PatientDTO objDto) {
-		return new Patient(objDto.getId(), objDto.getCpf(), objDto.getName(), objDto.getEmail(), objDto.getPhone(), objDto.getAddress());
+		return new Patient(objDto.getCpf(), objDto.getName(), objDto.getEmail(), objDto.getPhone(), objDto.getAddress());
 	}
 
 	private void updateData(Patient newObj, Patient obj) {
