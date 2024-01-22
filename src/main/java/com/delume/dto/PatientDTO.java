@@ -18,6 +18,7 @@ public class PatientDTO implements Serializable {
 	}
 
 	public PatientDTO(Patient obj) {
+		cpf = obj.getCpf();
 		name = obj.getName();
 		email = obj.getEmail();
 		phone = obj.getPhone();
