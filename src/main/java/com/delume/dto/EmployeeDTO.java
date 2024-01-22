@@ -14,7 +14,7 @@ public class EmployeeDTO implements Serializable {
 	private String email;
 	private String password;
 	private Address address;
-	private Integer position;
+	private String position;
 	
 	public EmployeeDTO() {
 	}
@@ -77,11 +77,11 @@ public class EmployeeDTO implements Serializable {
 		this.address = address;
 	}
 
-	public Integer getPosition() {
+	public String getPosition() {
 		return position;
 	}
 
-	public void setPosition(Integer position) {
+	public void setPosition(String position) {
 		this.position = position;
 	}
 }

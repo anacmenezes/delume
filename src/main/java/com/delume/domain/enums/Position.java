@@ -23,17 +23,17 @@ public enum Position {
 		return description;
 	}
 
-	public static Position toEnum(Integer cod) {
-		if(cod == null) {
+	public static Position toEnum(String description) {
+		if(description == null) {
 			return null;
 		}
 		
 		for(Position x : Position.values()) {
-			if(cod.equals(x.getCod())) {
+			if(description.equals(x.getdescription())) {
 				return x;
 			}
 		}
 		
-		throw new IllegalArgumentException("Id inválido: " + cod);
+		throw new IllegalArgumentException("Id inválido: " + description);
 	}
 }
