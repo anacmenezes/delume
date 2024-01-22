@@ -1,7 +1,6 @@
 package com.delume.services;
 
 import java.util.List;
-import java.util.Locale.Category;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +21,7 @@ public class PatientService {
 
 	public Patient find(Long cpf) {
 		Optional<Patient> obj = repo.findById(cpf);
-		return obj.orElseThrow(()-> new ObjectNotFoundException("Object not found! Id: " + cpf + ", Type: " + Category.class.getName()));
+		return obj.orElseThrow(()-> new ObjectNotFoundException("Object not found! Id: " + cpf));
 	}
 
 	public Patient insert(Patient obj) {

@@ -1,10 +1,13 @@
 package com.delume.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 import com.delume.domain.enums.Position;
 
@@ -21,6 +24,9 @@ public class Employee implements Serializable {
 	private Address address;
 	private String position;
 	
+	@ManyToMany(mappedBy="employee")
+	private List<Patient> patient = new ArrayList<>();
+	
 	public Employee() {
 	}
 
@@ -34,26 +40,6 @@ public class Employee implements Serializable {
 		this.password = password;
 		this.address = address;
 		this.position = (position==null) ? null : position.getdescription();
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(address, cpf, email, name, password, phone, position);
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Employee other = (Employee) obj;
-		return Objects.equals(address, other.address) && Objects.equals(cpf, other.cpf)
-				&& Objects.equals(email, other.email) && Objects.equals(name, other.name)
-				&& Objects.equals(password, other.password) && Objects.equals(phone, other.phone)
-				&& Objects.equals(position, other.position);
 	}
 
 	public Long getCpf() {
@@ -110,5 +96,33 @@ public class Employee implements Serializable {
 
 	public void setPosition(String position) {
 		this.position = position;
+	}
+	
+	public List<Patient> getPatient() {
+		return patient;
+	}
+
+	public void setPatient(List<Patient> patient) {
+		this.patient = patient;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(address, cpf, email, name, password, patient, phone, position);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Employee other = (Employee) obj;
+		return Objects.equals(address, other.address) && Objects.equals(cpf, other.cpf)
+				&& Objects.equals(email, other.email) && Objects.equals(name, other.name)
+				&& Objects.equals(password, other.password) && Objects.equals(patient, other.patient)
+				&& Objects.equals(phone, other.phone) && Objects.equals(position, other.position);
 	}
 }

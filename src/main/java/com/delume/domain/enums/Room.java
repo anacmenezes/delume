@@ -23,17 +23,17 @@ public enum Room {
 		return description;
 	}
 
-	public static Room toEnum(Integer cod) {
-		if(cod == null) {
+	public static Position toEnum(String description) {
+		if(description == null) {
 			return null;
 		}
 		
-		for(Room x : Room.values()) {
-			if(cod.equals(x.getCod())) {
+		for(Position x : Position.values()) {
+			if(description.equals(x.getdescription())) {
 				return x;
 			}
 		}
 		
-		throw new IllegalArgumentException("Id inválido: " + cod);
+		throw new IllegalArgumentException("Id inválido: " + description);
 	}
 }

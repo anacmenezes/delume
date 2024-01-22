@@ -1,29 +1,36 @@
 package com.delume.domain;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Objects;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 import com.delume.domain.enums.Room;
 
+@Entity
 public class Appointment implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
-	private Integer date;
+	private Date date;
 	private String informations;
-	private Integer room;
-//	Patient
-//	Employee
+	private String room;
 
 	public Appointment() {
 	}
 
-	public Appointment(Integer id, Integer date, String informations, Room room) {
+	public Appointment(Integer id, Date date, String informations, Room room) {
 		super();
 		this.id = id;
 		this.date = date;
 		this.informations = informations;
-		this.room = (room==null) ? null : room.getCod();
+		this.room = (room==null) ? null : room.getdescription();
 	}
 
 	public Integer getId() {
@@ -34,11 +41,11 @@ public class Appointment implements Serializable {
 		this.id = id;
 	}
 
-	public Integer getDate() {
+	public Date getDate() {
 		return date;
 	}
 
-	public void setDate(Integer date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 
@@ -50,11 +57,11 @@ public class Appointment implements Serializable {
 		this.informations = informations;
 	}
 
-	public Integer getRoom() {
+	public String getRoom() {
 		return room;
 	}
 
-	public void setRoom(Integer room) {
+	public void setRoom(String room) {
 		this.room = room;
 	}
 

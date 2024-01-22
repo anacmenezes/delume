@@ -1,10 +1,17 @@
 package com.delume.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Patient implements Serializable {
@@ -16,6 +23,14 @@ public class Patient implements Serializable {
 	private String email;
 	private String phone;
 	private Address address;
+	
+	@JsonIgnore
+	@ManyToMany
+	@JoinTable(name = "PATIENT_EMPLOYEE",
+		joinColumns = @JoinColumn(name = "patient_id"),
+		inverseJoinColumns = @JoinColumn(name = "employee_id")
+	)
+	private List<Employee> employee = new ArrayList<>();
 	
 	public Patient() {
 	}
@@ -67,6 +82,14 @@ public class Patient implements Serializable {
 
 	public void setAddress(Address address) {
 		this.address = address;
+	}
+
+	public List<Employee> getEmployee() {
+		return employee;
+	}
+
+	public void setEmployee(List<Employee> employee) {
+		this.employee = employee;
 	}
 
 	@Override
