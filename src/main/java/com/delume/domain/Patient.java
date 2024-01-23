@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -31,6 +32,10 @@ public class Patient implements Serializable {
 		inverseJoinColumns = @JoinColumn(name = "employee_id")
 	)
 	private List<Employee> employee = new ArrayList<>();
+	
+	@JsonIgnore
+	@OneToMany(mappedBy="patient")
+	private List<Appointment> appointment = new ArrayList<>();
 	
 	public Patient() {
 	}
@@ -90,6 +95,14 @@ public class Patient implements Serializable {
 
 	public void setEmployee(List<Employee> employee) {
 		this.employee = employee;
+	}
+
+	public List<Appointment> getAppointment() {
+		return appointment;
+	}
+
+	public void setAppointment(List<Appointment> appointment) {
+		this.appointment = appointment;
 	}
 
 	@Override

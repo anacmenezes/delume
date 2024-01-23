@@ -50,7 +50,7 @@ public class AppointmentService {
 	}	
 	
 	public Appointment fromDTO(AppointmentDTO objDto) {
-		return new Appointment(objDto.getId(), objDto.getDate(),  objDto.getInformations(), null);
+		return new Appointment(objDto.getId(), objDto.getDate(),  objDto.getInformations(), null, null, null);
 	}
 
 	private void updateData(Appointment newObj, Appointment obj) {

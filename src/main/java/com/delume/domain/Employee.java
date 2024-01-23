@@ -8,8 +8,10 @@ import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 import com.delume.domain.enums.Position;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Employee implements Serializable {
@@ -26,6 +28,10 @@ public class Employee implements Serializable {
 	
 	@ManyToMany(mappedBy="employee")
 	private List<Patient> patient = new ArrayList<>();
+	
+	@JsonIgnore
+	@OneToMany(mappedBy="employee")
+	private List<Appointment> appointment = new ArrayList<>();
 	
 	public Employee() {
 	}
@@ -104,6 +110,14 @@ public class Employee implements Serializable {
 
 	public void setPatient(List<Patient> patient) {
 		this.patient = patient;
+	}
+
+	public List<Appointment> getAppointment() {
+		return appointment;
+	}
+
+	public void setAppointment(List<Appointment> appointment) {
+		this.appointment = appointment;
 	}
 
 	@Override

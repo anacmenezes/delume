@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import com.delume.domain.enums.Room;
 
@@ -21,15 +23,25 @@ public class Appointment implements Serializable {
 	private Date date;
 	private String informations;
 	private String room;
+	
+	@ManyToOne
+	@JoinColumn(name="patient_id")
+	private Patient patient;
+	
+	@ManyToOne
+	@JoinColumn(name="employee_id")
+	private Employee employee;
 
 	public Appointment() {
 	}
 
-	public Appointment(Integer id, Date date, String informations, Room room) {
+	public Appointment(Integer id, Date date, String informations, Employee employee, Patient patient, Room room) {
 		super();
 		this.id = id;
 		this.date = date;
 		this.informations = informations;
+		this.patient = patient;
+		this.employee = employee;
 		this.room = (room==null) ? null : room.getdescription();
 	}
 
@@ -55,6 +67,22 @@ public class Appointment implements Serializable {
 
 	public void setInformations(String informations) {
 		this.informations = informations;
+	}
+
+	public Employee getEmployee() {
+		return employee;
+	}
+
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
+	}
+
+	public Patient getPatient() {
+		return patient;
+	}
+
+	public void setPatient(Patient patient) {
+		this.patient = patient;
 	}
 
 	public String getRoom() {
