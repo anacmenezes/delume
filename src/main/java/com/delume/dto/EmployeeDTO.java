@@ -2,19 +2,23 @@ package com.delume.dto;
 
 import java.io.Serializable;
 
-import com.delume.domain.Address;
-import com.delume.domain.Employee;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 
+import com.delume.domain.Employee;
+import com.delume.services.validation.RegisterUpdate;
+
+@RegisterUpdate
 public class EmployeeDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
+	@NotEmpty(message="Mandatory completion")
 	private Long cpf;
+	@NotEmpty(message="Mandatory completion")
 	private String name;
-	private String phone;
+	@NotEmpty(message="Mandatory completion")
+	@Email(message="Invalid email")
 	private String email;
-	private String password;
-	private Address address;
-	private String position;
 	
 	public EmployeeDTO() {
 	}
@@ -22,11 +26,7 @@ public class EmployeeDTO implements Serializable {
 	public EmployeeDTO(Employee obj) {
 		cpf = obj.getCpf();
 		name = obj.getName();
-		phone = obj.getPhone();
 		email = obj.getEmail();
-		password = obj.getPassword();
-		address = obj.getAddress();	
-		position = obj.getPosition();
 	}
 
 	public Long getCpf() {
@@ -45,43 +45,11 @@ public class EmployeeDTO implements Serializable {
 		this.name = name;
 	}
 
-	public String getPhone() {
-		return phone;
-	}
-
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
-
 	public String getEmail() {
 		return email;
 	}
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public Address getAddress() {
-		return address;
-	}
-
-	public void setAddress(Address address) {
-		this.address = address;
-	}
-
-	public String getPosition() {
-		return position;
-	}
-
-	public void setPosition(String position) {
-		this.position = position;
 	}
 }

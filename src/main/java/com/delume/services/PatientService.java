@@ -49,7 +49,7 @@ public class PatientService {
 	}	
 	
 	public Patient fromDTO(PatientDTO objDto) {
-		return new Patient(objDto.getCpf(), objDto.getName(), objDto.getEmail(), objDto.getPhone(), objDto.getAddress());
+		return new Patient(objDto.getCpf(), objDto.getName(), objDto.getEmail(), null, null);
 	}
 
 	private void updateData(Patient newObj, Patient obj) {

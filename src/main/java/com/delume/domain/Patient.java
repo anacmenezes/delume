@@ -3,8 +3,8 @@ package com.delume.domain;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -21,6 +21,8 @@ public class Patient implements Serializable {
 	@Id
 	private Long cpf;
 	private String name;
+	
+	@Column(unique=true)
 	private String email;
 	private String phone;
 	private Address address;
@@ -107,7 +109,10 @@ public class Patient implements Serializable {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(address, cpf, email, name, phone);
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((cpf == null) ? 0 : cpf.hashCode());
+		return result;
 	}
 
 	@Override
@@ -119,8 +124,11 @@ public class Patient implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Patient other = (Patient) obj;
-		return Objects.equals(address, other.address) && Objects.equals(cpf, other.cpf)
-				&& Objects.equals(email, other.email) && Objects.equals(name, other.name)
-				&& Objects.equals(phone, other.phone);
+		if (cpf == null) {
+			if (other.cpf != null)
+				return false;
+		} else if (!cpf.equals(other.cpf))
+			return false;
+		return true;
 	}
 }

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
@@ -21,7 +22,11 @@ public class Employee implements Serializable {
 	private Long cpf;
 	private String name;
 	private String phone;
+	
+	@Column(unique=true)
 	private String email;
+	
+	@JsonIgnore
 	private String password;
 	private Address address;
 	private String position;

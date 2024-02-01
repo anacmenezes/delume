@@ -49,7 +49,7 @@ public class EmployeeService {
 	}	
 	
 	public Employee fromDTO(EmployeeDTO objDto) {
-		return new Employee(objDto.getCpf(), objDto.getName(),  objDto.getPhone(), objDto.getEmail(), objDto.getPassword(), objDto.getAddress(), null);
+		return new Employee(objDto.getCpf(), objDto.getName(), null, null, null, null, null);
 	}
 
 	private void updateData(Employee newObj, Employee obj) {

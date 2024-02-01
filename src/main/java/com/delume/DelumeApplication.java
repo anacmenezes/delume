@@ -42,7 +42,10 @@ public class DelumeApplication implements CommandLineRunner {
 		Address add1 = new Address("123456", "Street test1", "123", "Neighborhood test1", "RJ", "RJ");
 		Patient pat1 = new Patient((long) 56278946102.0, "Test1", "test1@gmail.com", "2589463", add1);
 		Employee emp1 = new Employee((long) 59876421587.0, "Test3", "2589463","test1@gmail.com", "adm123" , add1, Position.HEALTH);
-		Appointment appo1 = new Appointment(null, null, "Test1", null, null,Room.TYPEONE);
+		Appointment appo1 = new Appointment(null, null, "Test1", emp1, pat1,Room.TYPEONE);
+		
+		emp1.getAppointment().addAll(Arrays.asList(appo1));
+		pat1.getAppointment().addAll(Arrays.asList(appo1));
 		
 		patientRepository.saveAll(Arrays.asList(pat1));
 		employeeRepository.saveAll(Arrays.asList(emp1));

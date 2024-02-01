@@ -1,18 +1,25 @@
 package com.delume.dto;
-
 import java.io.Serializable;
 
-import com.delume.domain.Address;
-import com.delume.domain.Patient;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 
+import com.delume.domain.Patient;
+import com.delume.services.validation.RegisterUpdate;
+
+@RegisterUpdate
 public class PatientDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
+	@NotEmpty(message="Mandatory completion")
 	private Long cpf;
+	
+	@NotEmpty(message="Mandatory completion")
 	private String name;
+	
+	@NotEmpty(message="Mandatory completion")
+	@Email(message="Invalid email")
 	private String email;
-	private String phone;
-	private Address address;
 	
 	public PatientDTO() {
 	}
@@ -21,8 +28,6 @@ public class PatientDTO implements Serializable {
 		cpf = obj.getCpf();
 		name = obj.getName();
 		email = obj.getEmail();
-		phone = obj.getPhone();
-		address = obj.getAddress();	
 	}
 
 	public Long getCpf() {
@@ -47,21 +52,5 @@ public class PatientDTO implements Serializable {
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	public String getPhone() {
-		return phone;
-	}
-
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
-
-	public Address getAddress() {
-		return address;
-	}
-
-	public void setAddress(Address address) {
-		this.address = address;
 	}
 }
